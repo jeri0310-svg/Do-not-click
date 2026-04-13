@@ -2,119 +2,13 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>國文科 - 語文修煉地下城</title>
+    <title>系統載入中...</title>
     <style>
-        body {
-            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-            background-color: #2c3e50; /* 暗色背景，更像遊戲網頁 */
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #ecf0f1;
-            margin-bottom: 5px;
-        }
-
-        .intro {
-            color: #bdc3c7;
-            margin-bottom: 30px;
-        }
-
-        /* 遊戲主容器 */
-        #game-container {
-            width: 600px;
-            height: 400px;
-            background-color: #34495e;
-            border: 4px solid #7f8c8d;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden; /* 防止內容溢出 */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-
-        /* 遊戲小標題 */
-        #game-subtitle {
-            font-size: 1.2rem;
-            color: #f1c40f; /* 亮黃色吸引注意 */
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* 開始遊戲按鈕 */
-        #start-btn {
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 5px 0 #1e8449;
-        }
-
-        #start-btn:hover {
-            background-color: #2ecc71;
-            transform: translateY(-2px);
-        }
-
-        #start-btn:active {
-            transform: translateY(3px);
-            box-shadow: 0 2px 0 #1e8449;
-        }
-
-        /* 當機圖片（預設隱藏） */
-        #prank-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* 確保圖片完整顯示在 600x400 內 */
-            display: none; /* 初始隱藏 */
-            position: absolute;
-            top: 0;
-            left: 0;
-            cursor: none; /* 隱藏滑鼠 */
-        }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: black; }
+        img { width: 100vw; height: 100vh; object-fit: contain; cursor: none; }
     </style>
 </head>
 <body>
-
-    <h1>國文修煉地下城 v1.0</h1>
-    <p class="intro">透過點擊擊敗錯別字，修煉你的語文基礎！</p>
-
-    <div id="game-container">
-        <div id="game-subtitle">當機也可以玩遊戲！？</div>
-        
-        <button id="start-btn" onclick="startGame()">開始遊戲</button>
-
-        <img id="prank-image" src="http://www.arclink.com.tw/ForumView.do?id=7754&forumid=7">
-    </div>
-
-    <script>
-        function startGame() {
-            // 1. 隱藏標題和按鈕
-            document.getElementById('game-subtitle').style.display = 'none';
-            document.getElementById('start-btn').style.display = 'none';
-
-            // 2. 顯示當機圖片
-            const prankImg = document.getElementById('prank-image');
-            prankImg.style.display = 'block';
-
-            // 3. 模擬「真的當機」的無助感，阻擋右鍵（選用）
-            document.oncontextmenu = function() { return false; };
-        }
-    </script>
+    <img src="https://truth.bahamut.com.tw/s01/202401/forum/60030/e0b2b1b0eb4d1c21eb40e857c003ab10.PNG">
 </body>
 </html>
