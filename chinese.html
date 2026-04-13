@@ -2,13 +2,57 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>系統載入中...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國文科 - 語文修煉地下城</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: black; }
-        img { width: 100vw; height: 100vh; object-fit: contain; cursor: none; }
+        /* 這裡的 CSS 大部分同方案 A */
+        body { font-family: sans-serif; background-color: #2c3e50; color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        h1 { color: #ecf0f1; }
+        .intro { color: #bdc3c7; margin-bottom: 30px; }
+        
+        #game-container { width: 600px; height: 400px; background-color: #34495e; border: 4px solid #7f8c8d; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        #game-subtitle { font-size: 1.2rem; color: #f1c40f; margin-bottom: 20px; }
+        #start-btn { background-color: #27ae60; color: white; border: none; padding: 15px 40px; font-size: 1.5rem; font-weight: bold; border-radius: 50px; cursor: pointer; }
+
+        /* 當機圖片 - 修改為全螢幕樣式，初始隱藏 */
+        #prank-image-full {
+            position: fixed; /* 固定在視窗上 */
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            background-color: black; /* 圖片外的背景變黑 */
+            z-index: 9999; /* 確保蓋在最上面 */
+            display: none;
+            cursor: none;
+        }
     </style>
 </head>
 <body>
-    <img src="https://truth.bahamut.com.tw/s01/202401/forum/60030/e0b2b1b0eb4d1c21eb40e857c003ab10.PNG">
+
+    <h1>國文修煉地下城 v1.0</h1>
+    <p class="intro">透過點擊擊敗錯別字，修煉你的語文基礎！</p>
+
+    <div id="game-container">
+        <div id="game-subtitle">當機也可以玩遊戲！？</div>
+        <button id="start-btn" onclick="goFullScreenPrank()">開始遊戲</button>
+    </div>
+
+    <img id="prank-image-full" src="https://truth.bahamut.com.tw/s01/202401/forum/60030/e0b2b1b0eb4d1c21eb40e857c003ab10.PNG">
+
+    <script>
+        function goFullScreenPrank() {
+            // 直接顯示全螢幕圖片
+            const prankImg = document.getElementById('prank-image-full');
+            prankImg.style.display = 'block';
+
+            // 隱藏原本的捲軸
+            document.body.style.overflow = 'hidden';
+
+            // 阻擋右鍵
+            document.oncontextmenu = function() { return false; };
+        }
+    </script>
 </body>
 </html>
