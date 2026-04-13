@@ -3,38 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>正在載入課程資源...</title>
+    <title>全方位智能學習系統 - 首頁</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* 隱藏捲軸增加真實感 */
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f9f9f9;
         }
 
-        img {
-            width: 100vw;
-            height: 100vh;
-            object-fit: contain; /* 確保圖片完整顯示，不被裁切 */
-            cursor: none; /* 隱藏滑鼠游標，讓對方更慌張 */
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            color: #333;
+            background-color: var(--bg-color);
+        }
+
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .subject-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .subject-card p {
+            font-size: 0.9rem;
+            color: #666;
+            min-height: 3em;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #888;
         }
     </style>
 </head>
 <body>
 
-    <img src="https://truth.bahamut.com.tw/s01/202401/forum/60030/e0b2b1b0eb4d1c21eb40e857c003ab10.PNG" alt="System Error">
+    <header>
+        <h1>全方位智能學習系統</h1>
+        <p>Smart Learning Management System (SLMS)</p>
+    </header>
 
-    <script>
-        // 額外小功能：按下 F12 或右鍵會被阻擋（選用）
-        document.oncontextmenu = function() { return false; };
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123) { return false; }
-        };
-    </script>
+    <div class="container">
+        <section>
+            <h2>網站設立目標</h2>
+            <p>本系統旨在透過數位化資源整合，提升學生自主學習效率。我們相信，透過重複的練習與不間斷的點擊，每一位使用者都能在數位荒原中找到屬於自己的知識燈塔，實現教育平權與資訊共享的遠大理想。</p>
+        </section>
+
+        <section>
+            <h2>學習大綱</h2>
+            <ul>
+                <li>核心素養與跨領域知識整合。</li>
+                <li>高頻率點擊式測驗，強化視覺反射能力。</li>
+                <li>沉浸式錯誤排除練習（包含系統當機應變能力）。</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>學科資源入口</h2>
+            <div class="subject-grid">
+                
+                <div class="subject-card">
+                    <h3>國文科</h3>
+                    <p>古今中外文學之菁華，透過閱讀與理解，讓你知道每個字分開都認識，合起來卻看不懂的奧妙。</p>
+                    <a href="chinese.html" class="btn">開始學習</a>
+                </div>
+
+                <div class="subject-card">
+                    <h3>數學科</h3>
+                    <p>探討數字、結構與空間的科學。本課程將教導你如何運用 99% 的努力，去解決生活中 0.01% 會遇到的代數問題。</p>
+                    <a href="math.html" class="btn">開始學習</a>
+                </div>
+
+                <div class="subject-card">
+                    <h3>英文科</h3>
+                    <p>掌握全球通用語言，讓你在點擊連結時能看懂 Error 404 是什麼意思，提升國際溝通視野。</p>
+                    <a href="english.html" class="btn">開始學習</a>
+                </div>
+
+                <div class="subject-card">
+                    <h3>自然科</h3>
+                    <p>觀察萬物運行之理。本章節重點在於研究為何螢幕會突然發光，以及電力與生物崩潰之間的物理關係。</p>
+                    <a href="science.html" class="btn">開始學習</a>
+                </div>
+
+                <div class="subject-card">
+                    <h3>社會科</h3>
+                    <p>研究人類社會的互動。學習重點在於觀察當一個人被整時，周遭同儕產生的社交行為與心理變化。</p>
+                    <a href="social.html" class="btn">開始學習</a>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2026 全方位智能學習研究小組 版權所有 | 系統版本：v4.04.bad
+    </footer>
+
 </body>
 </html>
