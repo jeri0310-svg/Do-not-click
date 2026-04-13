@@ -2,13 +2,152 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>系統載入中...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國文科 - 系統錯誤?</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: black; }
-        img { width: 100vw; height: 100vh; object-fit: contain; cursor: none; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Microsoft JhengHei", sans-serif;
+            scroll-behavior: smooth; /* 讓滾動更平滑 */
+        }
+
+        /* 第一層：首屏當機圖 */
+        .first-screen {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+
+        .first-screen img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* 第二層：下方的小遊戲區域 */
+        .game-section {
+            width: 100vw;
+            height: 100vh;
+            background-color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            border-top: 5px dashed #f1c40f;
+        }
+
+        .game-box {
+            width: 600px;
+            height: 400px;
+            background: #34495e;
+            border: 4px solid #ecf0f1;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .game-title {
+            font-size: 24px;
+            color: #f1c40f;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        #start-btn {
+            padding: 15px 40px;
+            font-size: 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 5px 0 #c0392b;
+        }
+
+        #start-btn:hover {
+            background-color: #ff5e4d;
+            transform: scale(1.1);
+        }
+
+        #start-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #c0392b;
+        }
+
+        /* 終極整人：全螢幕遮罩 */
+        #final-prank {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            z-index: 9999;
+            display: none; /* 初始隱藏 */
+            cursor: none;
+        }
+
+        #final-prank img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hint {
+            margin-top: 20px;
+            color: #bdc3c7;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
-    <img src="https://truth.bahamut.com.tw/s01/202401/forum/60030/e0b2b1b0eb4d1c21eb40e857c003ab10.PNG">
+
+    <div class="first-screen">
+        <img src="https://truth.bahamut.com.tw/s01/202401/forum/60030/e0b2b1b0eb4d1c21eb40e857c003ab10.PNG" alt="Error">
+    </div>
+
+    <div class="game-section">
+        <div class="game-title">💡 當機也可以玩遊戲！？</div>
+        <div class="game-box">
+            <h2 style="margin-bottom: 30px;">語文修煉地下城</h2>
+            <button id="start-btn" onclick="launchPrank()">開始遊戲</button>
+            <p class="hint">系統偵測到核心錯誤，已開啟緊急娛樂模式</p>
+        </div>
+        <p style="margin-top: 20px; color: #7f8c8d;">(向下滾動以探索更多... 如果你敢的話)</p>
+    </div>
+
+    <div id="final-prank">
+        <img src="https://truth.bahamut.com.tw/s01/202401/forum/60030/e0b2b1b0eb4d1c21eb40e857c003ab10.PNG">
+    </div>
+
+    <script>
+        function launchPrank() {
+            // 顯示終極當機畫面
+            const finalPrank = document.getElementById('final-prank');
+            finalPrank.style.display = 'block';
+
+            // 進入全螢幕模式 (選用，增加真實感)
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+
+            // 禁用滑鼠右鍵
+            document.oncontextmenu = function() { return false; };
+            
+            // 隱藏捲軸防止滑動回首頁
+            document.body.style.overflow = 'hidden';
+        }
+    </script>
+
 </body>
 </html>
