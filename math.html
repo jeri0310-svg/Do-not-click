@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>數學邏輯運算中</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; background: #f0f0f0; flex-direction: column; }
+        .loader { border: 16px solid #f3f3f3; border-top: 16px solid #3498db; border-radius: 50%; width: 120px; height: 120px; animation: spin 2s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="loader"></div>
+    <h2 id="text">正在為您計算π的最後一位數...</h2>
+    <script>
+        // 每5秒換一次廢話文字
+        const texts = ["正在構建幾何空間...", "正在解二次方程式...", "數據過於龐大，請稍候...", "正在嘗試理解微積分..."];
+        let i = 0;
+        setInterval(() => { document.getElementById('text').innerText = texts[i % texts.length]; i++; }, 5000);
+    </script>
+</body>
+</html>
