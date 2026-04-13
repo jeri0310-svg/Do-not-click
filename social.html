@@ -2,17 +2,64 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>資源更新中</title>
+    <title>社會科數位典藏資料庫</title>
     <style>
-        body { text-align: center; padding-top: 100px; font-family: sans-serif; color: #555; }
-        .warning { font-size: 50px; color: #e74c3c; }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow: hidden; /* 確保圖片不會撐開捲軸 */
+            font-family: sans-serif;
+        }
+
+        .system-msg {
+            color: #00ff00;
+            padding: 20px;
+            font-family: monospace;
+            z-index: 9999;
+            position: relative;
+        }
+
+        .popup-img {
+            position: absolute;
+            width: 300px; /* 彈出圖片的大小 */
+            border: 2px solid #ccc;
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
-    <div class="warning">⚠️</div>
-    <h1>404 - 知識庫連接失敗</h1>
-    <p>由於您的學習動機不足，伺服器拒絕提供資源。</p>
-    <p>請重新回到首頁，大聲喊出「我愛秦始皇」三次後再試一次。</p>
-    <a href="index.html">回到首頁</a>
+
+    <div class="system-msg">
+        > 正在連接社會科歷史資料庫...<br>
+        > 正在讀取地圖數據...<br>
+        > 警告：偵測到邏輯衝突！<br>
+        > 系統嘗試自動修復中...
+    </div>
+
+    <script>
+        const imgUrl = "https://img.chilling.tw/images/author/PH90/FotoJet(383).jpg";
+
+        function createPopup() {
+            const img = document.createElement('img');
+            img.src = imgUrl;
+            img.className = 'popup-img';
+            
+            // 隨機位置
+            const x = Math.random() * (window.innerWidth - 300);
+            const y = Math.random() * (window.innerHeight - 200);
+            
+            img.style.left = x + 'px';
+            img.style.top = y + 'px';
+            
+            document.body.appendChild(img);
+        }
+
+        // 延遲 2 秒後開始瘋狂跳窗
+        setTimeout(() => {
+            setInterval(createPopup, 100); // 每 100 毫秒（0.1秒）跳出一張
+        }, 2000);
+    </script>
 </body>
 </html>
