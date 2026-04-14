@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>心理學 - 核心人格特質分析</title>
+    <title>心理學 - 多維度人格整合分析</title>
     <style>
         body {
             font-family: "Microsoft JhengHei", sans-serif;
-            background-color: #f0f2f5;
+            background-color: #f4f7f9;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,144 +18,72 @@
         .quiz-container {
             background: white;
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            max-width: 550px;
             width: 90%;
             text-align: center;
         }
 
-        h2 { color: #4a90e2; margin-bottom: 20px; }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            height: 8px;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        #progress-fill {
+            width: 15%;
+            background-color: #3498db;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        h2 { color: #2c3e50; font-size: 1.5rem; margin-top: 0; }
 
         .question {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin-bottom: 25px;
-            color: #333;
+            color: #34495e;
+            line-height: 1.5;
             text-align: left;
+            font-weight: bold;
         }
 
         .options-grid {
             display: grid;
-            gap: 10px;
+            gap: 12px;
         }
 
         .option-btn {
-            padding: 12px;
-            border: 1px solid #ddd;
-            background: white;
+            padding: 15px;
+            border: 1px solid #dcdde1;
+            background: #fff;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
+            text-align: left;
+            font-size: 1rem;
         }
 
         .option-btn:hover {
-            background-color: #e3f2fd;
-            border-color: #4a90e2;
+            background-color: #f1f9ff;
+            border-color: #3498db;
+            color: #3498db;
         }
 
-        /* 隱藏的分析動畫 */
-        #analyzing {
-            display: none;
-        }
+        #analyzing { display: none; }
 
         .spinner {
             border: 4px solid #f3f3f3;
             border-top: 4px solid #3498db;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
-            margin: 20px auto;
+            margin: 30px auto;
         }
 
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        /* 全螢幕當機圖 */
-        #final-crash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: black;
-            display: none;
-            z-index: 9999;
-            cursor: none;
-        }
-
-        #final-crash img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="quiz-container" id="quiz-box">
-        <h2>人格特質深度分析</h2>
-        <p style="color: #666; font-size: 0.9rem;">測驗進度：<span id="progress">1</span> / 3</p>
-        <hr>
-        
-        <div id="q-content">
-            <p class="question" id="q-text">1. 在團體中，你通常傾向於：</p>
-            <div class="options-grid">
-                <button class="option-btn" onclick="nextQuestion()">主導討論方向</button>
-                <button class="option-btn" onclick="nextQuestion()">安靜傾聽他人意見</button>
-                <button class="option-btn" onclick="nextQuestion()">擔任協調者的角色</button>
-            </div>
-        </div>
-
-        <div id="analyzing">
-            <div class="spinner"></div>
-            <p>正在透過大數據分析您的心理原型...</p>
-            <p id="status-update" style="font-size: 0.8rem; color: #888;"></p>
-        </div>
-    </div>
-
-    <div id="final-crash">
-        <img src="https://truth.bahamut.com.tw/s01/202401/forum/60030/e0b2b1b0eb4d1c21eb40e857c003ab10.PNG">
-    </div>
-
-    <script>
-        let step = 1;
-        const questions = [
-            "",
-            "2. 當面對突如其來的壓力時，你的第一反應是？",
-            "3. 點擊下方按鈕以確認您的生物辨識特徵並產生報告："
-        ];
-
-        function nextQuestion() {
-            step++;
-            if (step <= 3) {
-                document.getElementById('progress').innerText = step;
-                document.getElementById('q-text').innerText = questions[step-1];
-                if (step === 3) {
-                    // 第三題把按鈕改成更具吸引力的樣式
-                    const grid = document.querySelector('.options-grid');
-                    grid.innerHTML = `<button class="option-btn" style="background:#4a90e2; color:white; font-weight:bold;" onclick="startAnalysis()">產生我的性格報告</button>`;
-                }
-            }
-        }
-
-        function startAnalysis() {
-            // 隱藏題目，顯示分析中
-            document.getElementById('q-content').style.display = 'none';
-            document.getElementById('analyzing').style.display = 'block';
-            
-            const status = document.getElementById('status-update');
-            
-            setTimeout(() => { status.innerText = "正在掃描神經元連接..."; }, 1000);
-            setTimeout(() => { status.innerText = "偵測到異常心理防衛機制..."; }, 2500);
-            setTimeout(() => { status.innerText = "系統強制突破中..."; }, 4000);
-
-            // 5秒後觸發終極當機
-            setTimeout(() => {
-                document.getElementById('final-crash').style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                document.oncontextmenu = () => false;
-            }, 5500);
-        }
-    </script>
-</body>
-</html>
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(3
