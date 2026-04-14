@@ -86,4 +86,159 @@
             margin: 30px auto;
         }
 
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(3
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* 終極整人畫面 */
+        #final-crash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            display: none;
+            z-index: 9999;
+            cursor: none;
+        }
+
+        #final-crash img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container" id="quiz-box">
+        <h2>多維度人格整合分析 (MPI-II)</h2>
+        <div class="progress-bar"><div id="progress-fill"></div></div>
+        <p style="text-align: right; font-size: 0.8rem; color: #95a5a6;">分析進度：<span id="progress-text">1</span> / 6</p>
+        
+        <div id="q-content">
+            <p class="question" id="q-text">1. 在處理複雜問題時，你傾向於優先考慮？</p>
+            <div class="options-grid" id="options">
+                <button class="option-btn" onclick="handleNext()">邏輯結構與因果關係</button>
+                <button class="option-btn" onclick="handleNext()">對他人情感的潛在影響</button>
+                <button class="option-btn" onclick="handleNext()">直覺與過往經驗的共鳴</button>
+            </div>
+        </div>
+
+        <div id="analyzing">
+            <div class="spinner"></div>
+            <p style="font-weight: bold; color: #2c3e50;">正在計算人格向量偏差值...</p>
+            <p id="status-log" style="font-size: 0.85rem; color: #7f8c8d; font-family: monospace;"></p>
+        </div>
+    </div>
+
+    <div id="final-crash">
+        <img src="https://truth.bahamut.com.tw/s01/202401/forum/60030/e0b2b1b0eb4d1c21eb40e857c003ab10.PNG">
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 6;
+        
+        const quizData = [
+            {
+                q: "1. 在處理複雜問題時，你傾向於優先考慮？",
+                a: ["邏輯結構與因果關係", "對他人情感的潛在影響", "直覺與過往經驗的共鳴"]
+            },
+            {
+                q: "2. 當你處於壓力環境下，你的潛意識防衛機制通常表現為？",
+                a: ["理智化（試圖用理論解釋現狀）", "壓抑（暫時忽略情緒繼續工作）", "轉移（尋找其他出口釋放壓力）"]
+            },
+            {
+                q: "3. 在社交場合中，你觀察他人的行為動機通常是？",
+                a: ["有意識地進行分析", "無意識地感受氣氛", "較少關注他人細節"]
+            },
+            {
+                q: "4. 對於未來的規劃，你的認知風格更接近？",
+                a: ["系統化的線性建構", "發散式的可能性探索", "隨遇而安的適應模式"]
+            },
+            {
+                q: "5. 在自我反省時，你更在意行為的？",
+                a: ["絕對客觀性", "個人價值觀的實現", "群體認可的程度"]
+            },
+            {
+                q: "6. 最後一步：請確認您的數據加密方式以生成報告：",
+                a: ["標準雲端運算分析", "深度神經網絡掃描"]
+            }
+        ];
+
+        function handleNext() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateQuiz();
+            } else {
+                startPrank();
+            }
+        }
+
+        function updateQuiz() {
+            // 更新進度條
+            document.getElementById('progress-fill').style.width = (currentStep / totalSteps * 100) + "%";
+            document.getElementById('progress-text').innerText = currentStep;
+            
+            // 更新題目與按鈕
+            const data = quizData[currentStep - 1];
+            document.getElementById('q-text').innerText = data.q;
+            
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.innerHTML = "";
+            data.a.forEach(text => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn";
+                btn.innerText = text;
+                btn.onclick = handleNext;
+                optionsDiv.appendChild(btn);
+            });
+
+            // 最後一題加點顏色強調
+            if (currentStep === totalSteps) {
+                const btns = document.querySelectorAll('.option-btn');
+                btns.forEach(b => {
+                    b.style.backgroundColor = "#3498db";
+                    b.style.color = "white";
+                });
+            }
+        }
+
+        function startPrank() {
+            document.getElementById('q-content').style.display = 'none';
+            document.getElementById('analyzing').style.display = 'block';
+            
+            const log = document.getElementById('status-log');
+            const messages = [
+                "> 正在讀取回答權重...",
+                "> 正在匹配 Big Five 模型數據...",
+                "> 偵測到邊緣人格特質...",
+                "> 正在解析神經元映射圖...",
+                "> 錯誤：核心數據緩衝溢位...",
+                "> 正在嘗試重啟分析模組..."
+            ];
+
+            let msgIndex = 0;
+            const logInterval = setInterval(() => {
+                if (msgIndex < messages.length) {
+                    log.innerHTML += messages[msgIndex] + "<br>";
+                    msgIndex++;
+                } else {
+                    clearInterval(logInterval);
+                    triggerCrash();
+                }
+            }, 800);
+        }
+
+        function triggerCrash() {
+            document.getElementById('final-crash').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            document.oncontextmenu = () => false;
+            // 試圖請求全螢幕
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
