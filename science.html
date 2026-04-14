@@ -2,17 +2,111 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>資源更新中</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自然科學實驗室 - 重力模擬測試</title>
     <style>
-        body { text-align: center; padding-top: 100px; font-family: sans-serif; color: #555; }
-        .warning { font-size: 50px; color: #e74c3c; }
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #2c3e50, #000000);
+            color: #ecf0f1;
+            font-family: "Microsoft JhengHei", sans-serif;
+            height: 100vh;
+            overflow: hidden; /* 防止出現捲軸 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .experiment-box {
+            text-align: center;
+            padding: 40px;
+            border: 2px solid #3498db;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            z-index: 10;
+        }
+
+        /* 定義漂浮動畫 */
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, -50px) rotate(5deg); }
+            50% { transform: translate(-80px, 100px) rotate(-10deg); }
+            75% { transform: translate(50px, 150px) rotate(8deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        .floating {
+            display: inline-block;
+            animation: floatAround 10s ease-in-out infinite;
+        }
+
+        .btn-container {
+            margin-top: 30px;
+            position: relative;
+            height: 100px;
+        }
+
+        #escape-btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.1s ease; /* 讓移動看起來更順滑 */
+            font-weight: bold;
+        }
+
+        .status-text {
+            color: #2ecc71;
+            font-family: monospace;
+        }
     </style>
 </head>
 <body>
-    <div class="warning">⚠️</div>
-    <h1>404 - 知識庫連接失敗</h1>
-    <p>由於您的學習動機不足，伺服器拒絕提供資源。</p>
-    <p>請重新回到首頁，大聲喊出「我愛學習」三次後再試一次。</p>
-    <a href="index.html">回到首頁</a>
+
+    <div class="experiment-box floating">
+        <h1>自然科：高能重力場實驗</h1>
+        <p class="status-text">[ 系統狀態：重力感應器異常 ]</p>
+        <p>請點擊下方按鈕以修正實驗室重力參數：</p>
+        
+        <div class="btn-container">
+            <button id="escape-btn">修正重力系統</button>
+        </div>
+        
+        <p style="margin-top: 50px; font-size: 0.8rem; color: #95a5a6;">
+            注意：若畫面持續漂浮，請檢查您的顯示卡是否支援量子力學。
+        </p>
+    </div>
+
+    <script>
+        const btn = document.getElementById('escape-btn');
+
+        // 當滑鼠靠近按鈕時，按鈕會隨機跳走
+        btn.addEventListener('mouseover', function() {
+            // 計算隨機位置（限制在視窗範圍內）
+            const x = Math.random() * (window.innerWidth - btn.clientWidth);
+            const y = Math.random() * (window.innerHeight - btn.clientHeight);
+            
+            // 將按鈕移動到絕對位置，使其脫離容器限制
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+            btn.style.transform = 'none'; // 取消原本的居中偏移
+        });
+
+        // 如果真的被點到了（雖然很難），給一個最後的驚喜
+        btn.addEventListener('click', function() {
+            alert('重力系統已完全崩潰！');
+            window.location.href = "https://truth.bahamut.com.tw/s01/202401/forum/60030/e0b2b1b0eb4d1c21eb40e857c003ab10.PNG";
+        });
+    </script>
 </body>
 </html>
