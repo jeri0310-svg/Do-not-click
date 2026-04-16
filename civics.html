@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>存取拒絕 - 系統安全警告</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .warning-container {
+            max-width: 700px;
+            padding: 40px;
+            border: 2px solid #d63031;
+            background-color: #fff5f5;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .icon {
+            font-size: 80px;
+            color: #d63031;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #d63031;
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #d63031;
+            padding-bottom: 10px;
+        }
+
+        .details {
+            text-align: left;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #fab1a0;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .notice {
+            margin-top: 25px;
+            font-weight: bold;
+            color: #c0392b;
+        }
+
+        .footer-info {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #636e72;
+        }
+
+        /* 偽裝的計時器 */
+        #timer {
+            font-weight: bold;
+            color: #d63031;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="warning-container">
+        <div class="icon">⚠️</div>
+        <h1>您 已 違 反 網 路 使 用 原 則</h1>
+        
+        <div class="details">
+            <strong>偵測事件：</strong> 非法存取受限學術資源<br>
+            <strong>違規代碼：</strong> CIV-LAW-2026-X9<br>
+            <strong>來源 IP：</strong> <span id="ip-address">192.168.**.**</span><br>
+            <strong>處理動作：</strong> 您的存取權限已被暫時封鎖，相關紀錄已傳送至「數位發展部資安防護中心」。
+        </div>
+
+        <p class="notice">
+            請勿關閉此視窗，系統正在進行身份核對...<br>
+            預計等待時間：<span id="timer">15</span> 秒
+        </p>
+
+        <div class="footer-info">
+            中華民國教育部自主學習資源保護小組 監製<br>
+            Security Certificate: SSL-X509-ENCRYPTED
+        </div>
+    </div>
+
+    <script>
+        // 偽造一個看起來很真實的 IP
+        const randomIP = `118.163.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}`;
+        document.getElementById('ip-address').innerText = randomIP;
+
+        // 倒數計時器
+        let timeLeft = 15;
+        const timerElement = document.getElementById('timer');
+        
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerElement.innerText = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                // 倒數結束後跳轉到當機圖
+                window.location.href = "https://truth.bahamut.com.tw/s01/202401/forum/60030/e0b2b1b0eb4d1c21eb40e857c003ab10.PNG";
+            }
+        }, 1000);
+
+        // 阻擋右鍵增加緊張感
+        document.oncontextmenu = () => false;
+    </script>
+</body>
+</html>
